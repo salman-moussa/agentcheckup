@@ -79,7 +79,7 @@ The **Download score card** button makes an image with the five numbers only. It
 - Token sizes of your own files are estimates (4 characters per token). The Claude Code session total is real: it is read from Claude Code's own usage log.
 - A large history takes time. Expect about 10 seconds per gigabyte on a 4-core laptop.
 - Compressed Codex sessions (`.zst`) need Node 22.15 or newer. On older versions they are skipped.
-- Tested on Windows. The Mac and Linux paths are written from each tool's documented locations and are not yet tested on those systems.
+- The tests run on Windows, macOS and Linux in CI. A scan of a real machine has been checked on Windows only so far.
 
 ## Try it on fake data
 
