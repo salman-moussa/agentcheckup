@@ -62,9 +62,9 @@ section>h2 small{font-size:13px;font-weight:400;color:var(--muted)}
 .map h3{font-size:13px;font-weight:600;color:var(--muted);margin:0 0 8px;display:flex;justify-content:space-between}
 .map .tool+.tool{margin-top:16px}
 .blocks{display:flex;gap:3px;min-height:74px}
-.block{min-width:44px;border-radius:6px;padding:8px 10px;background:var(--soft);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
+.block{min-width:88px;border-radius:6px;padding:8px 10px;background:var(--soft);overflow:hidden;display:flex;flex-direction:column;justify-content:space-between}
 .block b{font-size:15px;font-variant-numeric:tabular-nums}
-.block span{font-size:12px;color:var(--muted);line-height:1.3}
+.block span{font-size:12px;color:var(--muted);line-height:1.3;overflow-wrap:anywhere}
 .block:nth-child(1){background:color-mix(in srgb,var(--accent) 22%,var(--surface))}
 .block:nth-child(2){background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
 .block:nth-child(3){background:color-mix(in srgb,var(--accent) 8%,var(--surface))}
