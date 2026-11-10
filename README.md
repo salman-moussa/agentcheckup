@@ -8,7 +8,9 @@ npx agentcheckup
 
 It scans the files that Claude Code, Codex and Cursor keep on your disk and opens a report with a score from 0 to 100.
 
-<!-- Add docs/report.png here: run `npm run demo` and take a screenshot of the fake-data report. -->
+![The agentcheckup report on a fake, deliberately unhealthy setup](docs/report.png)
+
+The picture shows fake data from `npm run demo`.
 
 ## What it checks
 
