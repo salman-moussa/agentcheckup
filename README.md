@@ -6,6 +6,12 @@
 npx agentcheckup
 ```
 
+Not on npm yet. Until the first release, run it straight from this repo:
+
+```bash
+npx github:salman-moussa/agentcheckup
+```
+
 It scans the files that Claude Code, Codex and Cursor keep on your disk and opens a report with a score from 0 to 100.
 
 ![The agentcheckup report on a fake, deliberately unhealthy setup](docs/report.png)
