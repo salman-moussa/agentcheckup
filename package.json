@@ -1,0 +1,36 @@
+{
+  "name": "agentcheckup",
+  "version": "0.1.0",
+  "description": "One command health check for your AI coding setup: leaked secrets, context weight, risky permissions and rule files. Runs 100% locally.",
+  "type": "module",
+  "bin": {
+    "agentcheckup": "bin/agentcheckup.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check bin/agentcheckup.js && node --test",
+    "demo": "node demo/demo.js"
+  },
+  "keywords": [
+    "claude-code",
+    "codex",
+    "cursor",
+    "ai",
+    "agents",
+    "security",
+    "secrets",
+    "mcp",
+    "audit",
+    "cli"
+  ],
+  "license": "MIT"
+}
