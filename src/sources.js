@@ -20,7 +20,7 @@ export function locate(home = os.homedir(), env = process.env, platform = proces
     codex: env.CODEX_HOME || path.join(home, '.codex'),
     cursor: path.join(home, '.cursor'),
     cursorUser,
-    state: path.join(home, '.agentcheckup'),
+    state: path.join(home, '.aicheckup'),
   };
 }
 

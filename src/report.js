@@ -119,7 +119,7 @@ function findingHtml(f, live) {
   if (f.fix?.type === 'redact') {
     fix = live
       ? `<div class="fix"><div><b>Fix</b>${esc(f.fix.text)}</div><button class="primary" data-fix="${esc(f.fix.tool)}">Clean history</button></div><div class="note" data-result hidden></div>`
-      : `<div class="fix"><div><b>Fix</b>${esc(f.fix.text)} Run <code>npx agentcheckup fix</code></div></div>`;
+      : `<div class="fix"><div><b>Fix</b>${esc(f.fix.text)} Run <code>npx aicheckup fix</code></div></div>`;
   } else if (f.fix) {
     fix = `<div class="fix"><div><b>How to fix</b>${esc(f.fix.text)}</div></div>`;
   }
@@ -151,7 +151,7 @@ function client() {
   var token = document.body.dataset.token;
   document.querySelectorAll('[data-fix]').forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var ok = confirm('Replace the secrets in these history files with [REDACTED]?\n\nA backup of every changed file is saved first in ~/.agentcheckup/backups.\nYou can restore it with: npx agentcheckup undo\n\nRotate the keys as well. Cleaning the files does not make a leaked key safe.');
+      var ok = confirm('Replace the secrets in these history files with [REDACTED]?\n\nA backup of every changed file is saved first in ~/.aicheckup/backups.\nYou can restore it with: npx aicheckup undo\n\nRotate the keys as well. Cleaning the files does not make a leaked key safe.');
       if (!ok) return;
       var out = btn.closest('.body').querySelector('[data-result]');
       btn.disabled = true;
@@ -165,7 +165,7 @@ function client() {
             (r.skipped ? ' Skipped ' + r.skipped + ' files that were written in the last 10 minutes or are locked. Close your AI tools and try again.' : '') + ' Reloading…';
           setTimeout(function () { location.reload(); }, r.skipped ? 6000 : 1600);
         })
-        .catch(function () { out.hidden = false; out.textContent = 'The local server has stopped. Run npx agentcheckup again.'; });
+        .catch(function () { out.hidden = false; out.textContent = 'The local server has stopped. Run npx aicheckup again.'; });
     });
   });
 
@@ -183,20 +183,20 @@ function client() {
     }).join('');
     var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" font-family="Segoe UI,system-ui,Helvetica,Arial,sans-serif">' +
       '<rect width="1200" height="630" fill="#111315"/>' +
-      '<text x="100" y="96" font-size="30" font-weight="600" fill="#e9e7e2">agentcheckup</text>' +
+      '<text x="100" y="96" font-size="30" font-weight="600" fill="#e9e7e2">aicheckup</text>' +
       '<text x="1100" y="96" font-size="24" fill="#9aa2ac" text-anchor="end">My AI coding setup</text>' +
       '<circle cx="270" cy="350" r="130" fill="none" stroke="#22262a" stroke-width="18"/>' +
       '<circle cx="270" cy="350" r="130" fill="none" stroke="' + colour(d.score) + '" stroke-width="18" stroke-linecap="round" stroke-dasharray="' + c * d.score / 100 + ' ' + c + '" transform="rotate(-90 270 350)"/>' +
       '<text x="270" y="378" font-size="104" font-weight="600" fill="#e9e7e2" text-anchor="middle">' + d.score + '</text>' +
       '<text x="270" y="424" font-size="26" fill="#9aa2ac" text-anchor="middle">' + d.grade + '</text>' + cats +
-      '<text x="100" y="578" font-size="24" fill="#9aa2ac">Check yours:  npx agentcheckup</text></svg>';
+      '<text x="100" y="578" font-size="24" fill="#9aa2ac">Check yours:  npx aicheckup</text></svg>';
     var img = new Image();
     img.onload = function () {
       var cv = document.createElement('canvas');
       cv.width = 1200; cv.height = 630;
       cv.getContext('2d').drawImage(img, 0, 0);
       var a = document.createElement('a');
-      a.download = 'agentcheckup-score.png';
+      a.download = 'aicheckup-score.png';
       a.href = cv.toDataURL('image/png');
       a.click();
     };
@@ -215,8 +215,8 @@ export function renderReport(data, { live = false, token = '', hasBackups = fals
   const when = new Date(data.generatedAt).toLocaleString('en-GB', { dateStyle: 'medium', timeStyle: 'short' });
 
   if (data.score == null) {
-    return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>agentcheckup</title><style>${CSS}</style>
-<body><div class="wrap"><header class="top"><div class="brand">agentcheckup</div></header>
+    return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>aicheckup</title><style>${CSS}</style>
+<body><div class="wrap"><header class="top"><div class="brand">aicheckup</div></header>
 <div class="hero" style="grid-template-columns:1fr"><div><h1>No AI coding tools found</h1><p>Looked for Claude Code, Codex and Cursor in your home folder and found none of them.</p><div class="chips">${toolChips}</div></div></div></div></body></html>`;
   }
 
@@ -243,9 +243,9 @@ export function renderReport(data, { live = false, token = '', hasBackups = fals
 
   return `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>agentcheckup · ${data.score}/100</title><style>${CSS}</style></head>
+<title>aicheckup · ${data.score}/100</title><style>${CSS}</style></head>
 <body data-token="${esc(token)}"><div class="wrap">
-<header class="top"><div class="brand">agentcheckup <span>v${esc(data.version)}</span></div><div class="meta">Scanned on this machine · ${esc(when)} · nothing was sent anywhere</div></header>
+<header class="top"><div class="brand">aicheckup <span>v${esc(data.version)}</span></div><div class="meta">Scanned on this machine · ${esc(when)} · nothing was sent anywhere</div></header>
 <div class="hero">
 <div class="ring" role="img" aria-label="Score ${data.score} out of 100"><svg viewBox="0 0 120 120"><circle class="track" cx="60" cy="60" r="52"/><circle class="val st-${t}" cx="60" cy="60" r="52" stroke-dasharray="${((C * data.score) / 100).toFixed(1)} ${C.toFixed(1)}"/></svg><div class="num"><b>${data.score}</b><small>${esc(data.grade)}</small></div></div>
 <div><h1>${esc(headline(data))}</h1>
@@ -258,7 +258,7 @@ ${mapHtml(data)}
 ${sections}
 <div class="foot">
 <div>The score card image holds only the five numbers above. No paths, keys or names.</div>
-${hasBackups ? '<div>Backups from an earlier clean still exist and still contain the secrets. Restore with <code>npx agentcheckup undo</code> or delete with <code>npx agentcheckup purge</code>.</div>' : ''}
+${hasBackups ? '<div>Backups from an earlier clean still exist and still contain the secrets. Restore with <code>npx aicheckup undo</code> or delete with <code>npx aicheckup purge</code>.</div>' : ''}
 <div>Detection covers keys with a fixed format. Passwords written as plain words are not detected.</div>
 </div>
 </div>

@@ -94,7 +94,7 @@ export function redactHistory(r, files, { now = Date.now() } = {}) {
       continue;
     }
     const backup = path.join(backupDir, `${String(manifest.length + 1).padStart(4, '0')}-${path.basename(f.file)}`);
-    const tmp = f.file + '.agentcheckup.tmp';
+    const tmp = f.file + '.aicheckup.tmp';
     const tally = { redacted: 0, kept: 0 };
     try {
       fs.mkdirSync(backupDir, { recursive: true });

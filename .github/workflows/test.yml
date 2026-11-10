@@ -18,5 +18,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-      - run: node --check bin/agentcheckup.js
+      - run: node --check bin/aicheckup.js
       - run: node --test

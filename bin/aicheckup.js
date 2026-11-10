@@ -10,14 +10,14 @@ import { scan, VERSION } from '../src/scan.js';
 import { serve } from '../src/server.js';
 import { locate, pretty, TOOLS } from '../src/sources.js';
 
-const HELP = `agentcheckup ${VERSION}
+const HELP = `aicheckup ${VERSION}
 Health check for your AI coding setup. Runs on this machine only.
 
 Usage
-  npx agentcheckup            scan and open the report in your browser
-  npx agentcheckup fix        replace secrets in chat history with [REDACTED] (backs up first)
-  npx agentcheckup undo       restore the files changed by the last fix
-  npx agentcheckup purge      delete the backups (they still contain the secrets)
+  npx aicheckup            scan and open the report in your browser
+  npx aicheckup fix        replace secrets in chat history with [REDACTED] (backs up first)
+  npx aicheckup undo       restore the files changed by the last fix
+  npx aicheckup purge      delete the backups (they still contain the secrets)
 
 Options
   --json             print the result as JSON and exit
@@ -90,7 +90,7 @@ async function runScan() {
 function printSummary(data) {
   if (data.score == null) return console.log('\n  No AI coding tools found (looked for Claude Code, Codex, Cursor).\n');
   const tools = Object.values(data.tools).filter((t) => t.scanned).map((t) => t.label).join(', ');
-  console.log(`\n  agentcheckup  ${data.score}/100  ${data.grade}`);
+  console.log(`\n  aicheckup  ${data.score}/100  ${data.grade}`);
   console.log(`  ${tools}\n`);
   for (const c of data.categories) {
     const bar = '█'.repeat(Math.round(c.score / 10)).padEnd(10, '░');
@@ -151,7 +151,7 @@ if (command === 'scan') {
   for (const s of out.skipped) console.log(`  Skipped ${pretty(s.file, r.home)}: ${s.reason}`);
   if (out.backupDir) {
     console.log(`\n  Backup: ${pretty(out.backupDir, r.home)}`);
-    console.log('  The backup still contains the secrets. When your tools work fine, run: npx agentcheckup purge');
+    console.log('  The backup still contains the secrets. When your tools work fine, run: npx aicheckup purge');
   }
   console.log('  Rotate the keys too. Cleaning files does not make a leaked key safe.\n');
 } else if (command === 'undo') {

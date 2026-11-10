@@ -7,9 +7,9 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { makeHome } from './fixture.js';
 
-const home = fs.mkdtempSync(path.join(os.tmpdir(), 'agentcheckup-demo-'));
+const home = fs.mkdtempSync(path.join(os.tmpdir(), 'aicheckup-demo-'));
 makeHome(home);
-const cli = fileURLToPath(new URL('../bin/agentcheckup.js', import.meta.url));
+const cli = fileURLToPath(new URL('../bin/aicheckup.js', import.meta.url));
 spawn(process.execPath, [cli, '--home', home, ...process.argv.slice(2)], { stdio: 'inherit' }).on('exit', (code) => {
   fs.rmSync(home, { recursive: true, force: true });
   process.exit(code ?? 0);

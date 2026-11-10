@@ -204,7 +204,7 @@ test('report server needs the token and a local Host header', async () => {
     assert.equal((await fetch(`${u.origin}/?t=wrong`)).status, 403);
     const ok = await fetch(url);
     assert.equal(ok.status, 200);
-    assert.match(await ok.text(), /agentcheckup/);
+    assert.match(await ok.text(), /aicheckup/);
     const bad = await fetch(`${u.origin}/fix?t=${u.searchParams.get('t')}`, { method: 'POST', body: JSON.stringify({ tool: 'nope' }) });
     assert.equal(bad.status, 400);
   } finally {

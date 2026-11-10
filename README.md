@@ -1,20 +1,14 @@
-# agentcheckup
+# aicheckup
 
 **A health check for your AI coding setup. One command, one score, runs only on your machine.**
 
 ```bash
-npx agentcheckup
-```
-
-Not on npm yet. Until the first release, run it straight from this repo:
-
-```bash
-npx github:salman-moussa/agentcheckup
+npx aicheckup
 ```
 
 It scans the files that Claude Code, Codex and Cursor keep on your disk and opens a report with a score from 0 to 100.
 
-![The agentcheckup report on a fake, deliberately unhealthy setup](docs/report.png)
+![The aicheckup report on a fake, deliberately unhealthy setup](docs/report.png)
 
 The picture shows fake data from `npm run demo`.
 
@@ -39,23 +33,23 @@ Every finding says what is wrong, where it is, and how to fix it.
 ## Cleaning leaked secrets
 
 ```bash
-npx agentcheckup fix
+npx aicheckup fix
 ```
 
 This replaces each secret in your chat history files with `[REDACTED]`. The same action is behind the **Clean history** button in the report.
 
-- Every file is backed up first in `~/.agentcheckup/backups`.
+- Every file is backed up first in `~/.aicheckup/backups`.
 - Files written in the last 10 minutes are skipped, because a running session may still own them. Close your AI tools first.
 - Databases (Cursor chat storage, Codex SQLite files) are reported but never edited.
 
 ```bash
-npx agentcheckup undo
+npx aicheckup undo
 ```
 
 Restores the files from the last fix.
 
 ```bash
-npx agentcheckup purge
+npx aicheckup purge
 ```
 
 Deletes the backups. Do this once your tools work fine, because the backups still hold the secrets.

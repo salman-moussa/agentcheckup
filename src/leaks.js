@@ -54,7 +54,7 @@ export function scanFile(file, mode) {
 }
 
 // Worker side: this same file is started as a worker by scanAll below.
-if (!isMainThread && workerData?.agentcheckup) {
+if (!isMainThread && workerData?.aicheckup) {
   parentPort.on('message', (t) => {
     let hits = null;
     try {
@@ -114,7 +114,7 @@ export async function scanAll(files, { workers, onProgress } = {}) {
       let alive = Math.min(n, tasks.length);
       const retire = () => --alive === 0 && resolve();
       for (let k = alive; k > 0; k--) {
-        const w = new Worker(new URL(import.meta.url), { workerData: { agentcheckup: true } });
+        const w = new Worker(new URL(import.meta.url), { workerData: { aicheckup: true } });
         let current = null;
         const feed = () => {
           current = tasks[next++] ?? null;

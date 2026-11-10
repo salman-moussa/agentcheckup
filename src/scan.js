@@ -47,7 +47,7 @@ export async function scan({ home, env, only, workers, onProgress } = {}) {
   const score = active.length ? Math.round(categories.reduce((a, c) => a + c.score * c.weight, 0)) : null;
 
   return {
-    name: 'agentcheckup',
+    name: 'aicheckup',
     version: VERSION,
     generatedAt: new Date().toISOString(),
     tools: Object.fromEntries(Object.entries(TOOLS).map(([k, label]) => [k, { label, found: present[k], scanned: active.includes(k) }])),

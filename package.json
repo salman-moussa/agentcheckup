@@ -1,19 +1,19 @@
 {
-  "name": "agentcheckup",
+  "name": "aicheckup",
   "version": "0.1.0",
   "description": "One command health check for your AI coding setup: leaked secrets, context weight, risky permissions and rule files. Runs 100% locally.",
   "author": "Salman Moussa",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/salman-moussa/agentcheckup.git"
+    "url": "git+https://github.com/salman-moussa/aicheckup.git"
   },
-  "homepage": "https://github.com/salman-moussa/agentcheckup#readme",
+  "homepage": "https://github.com/salman-moussa/aicheckup#readme",
   "bugs": {
-    "url": "https://github.com/salman-moussa/agentcheckup/issues"
+    "url": "https://github.com/salman-moussa/aicheckup/issues"
   },
   "type": "module",
   "bin": {
-    "agentcheckup": "bin/agentcheckup.js"
+    "aicheckup": "bin/aicheckup.js"
   },
   "files": [
     "bin",
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "node --test",
-    "check": "node --check bin/agentcheckup.js && node --test",
+    "check": "node --check bin/aicheckup.js && node --test",
     "demo": "node demo/demo.js"
   },
   "keywords": [
