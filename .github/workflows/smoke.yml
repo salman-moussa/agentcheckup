@@ -1,0 +1,18 @@
+name: smoke
+
+# Manual check that the published npm package runs on each system.
+on: workflow_dispatch
+
+jobs:
+  npx:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npx --yes aicheckup@latest --version
+      - run: npx --yes aicheckup@latest --json
